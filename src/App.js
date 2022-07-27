@@ -6,6 +6,8 @@ import Formulario from "./componentes/Formulario";
 function App() {
   //Defino el state aca ya que fluyen del componente padre al hijo
   const [cantidad, guardarCantidad] = useState(0);
+  const [plazo, guardarPlazo] = useState("");
+  const [total, guardarTotal] = useState(0);
 
   return (
     //SI QUITO DIV DA ERROR PORQUE SE DEBE RETORNAR UN ELEMENTO QUE PUEDE CONTENER MUCHOS MAS
@@ -16,7 +18,15 @@ function App() {
         descripcion="Utiliza el formulario y obten una cotizacion"
       />
       <div className="container">
-        <Formulario cantidad={cantidad} guardarCantidad={guardarCantidad} />
+        <Formulario
+          cantidad={cantidad}
+          guardarCantidad={guardarCantidad}
+          plazo={plazo}
+          guardarPlazo={guardarPlazo}
+          total={total}
+          guardarTotal={guardarTotal}
+        />
+        <p>Total a pagar: $ {total}</p>
       </div>
     </Fragment>
   );
