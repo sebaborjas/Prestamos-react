@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
 import Header from "./componentes/Header";
 import Formulario from "./componentes/Formulario";
+import Mensaje from "./componentes/Mensaje";
+import Resultado from "./componentes/Resultado";
 //LOS COMPONENTES SE UTILIZAN: < COMPONENTE />
 
 function App() {
@@ -8,6 +10,14 @@ function App() {
   const [cantidad, guardarCantidad] = useState(0);
   const [plazo, guardarPlazo] = useState("");
   const [total, guardarTotal] = useState(0);
+
+  //Carga condicional de componentes
+  let componente;
+  if (total === 0) {
+    componente = <Mensaje />;
+  } else {
+    componente = <Resultado total={total} plazo={plazo} cantidad={cantidad} />;
+  }
 
   return (
     //SI QUITO DIV DA ERROR PORQUE SE DEBE RETORNAR UN ELEMENTO QUE PUEDE CONTENER MUCHOS MAS
@@ -26,7 +36,7 @@ function App() {
           total={total}
           guardarTotal={guardarTotal}
         />
-        <p>Total a pagar: $ {total}</p>
+        <div className="mensajes">{componente}</div>
       </div>
     </Fragment>
   );
