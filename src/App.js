@@ -1,9 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Header from "./componentes/Header";
 import Formulario from "./componentes/Formulario";
 //LOS COMPONENTES SE UTILIZAN: < COMPONENTE />
 
 function App() {
+  //Defino el state aca ya que fluyen del componente padre al hijo
+  const [cantidad, guardarCantidad] = useState(0);
+
   return (
     //SI QUITO DIV DA ERROR PORQUE SE DEBE RETORNAR UN ELEMENTO QUE PUEDE CONTENER MUCHOS MAS
     //SINO SE PUEDE IMPORTAR FRAGMENT
@@ -13,7 +16,7 @@ function App() {
         descripcion="Utiliza el formulario y obten una cotizacion"
       />
       <div className="container">
-        <Formulario />
+        <Formulario cantidad={cantidad} guardarCantidad={guardarCantidad} />
       </div>
     </Fragment>
   );
