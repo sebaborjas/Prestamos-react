@@ -7,8 +7,8 @@ const Formulario = (props) => {
     guardarCantidad,
     plazo,
     guardarPlazo,
-    total,
     guardarTotal,
+    guardarCargando,
   } = props;
 
   const [error, guardarError] = useState(false);
@@ -22,11 +22,19 @@ const Formulario = (props) => {
     }
     guardarError(false);
 
-    //Realizar cotizacion
-    const total = calcularTotal(cantidad, plazo);
+    //Habilito spinner
+    guardarCargando(true);
 
-    //Una vez calculado, guardarTotal(Total);
-    guardarTotal(total);
+    setTimeout(() => {
+      //Realizar cotizacion
+      const total = calcularTotal(cantidad, plazo);
+
+      //Una vez calculado, guardarTotal(Total);
+      guardarTotal(total);
+
+      //Deshabilita spinner
+      guardarCargando(false);
+    }, 3000);
   };
 
   return (
@@ -50,7 +58,9 @@ const Formulario = (props) => {
               className="u-full-width"
               onChange={(evento) => guardarPlazo(parseInt(evento.target.value))}
             >
-              <option value="0">Seleccionar</option>
+              <option value="" disabled selected>
+                Seleccionar
+              </option>
               <option value="3">3 meses</option>
               <option value="6">6 meses</option>
               <option value="12">12 meses</option>

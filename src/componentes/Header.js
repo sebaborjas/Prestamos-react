@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const Header = ({ titulo }) => <h1>{titulo}</h1>;
 
